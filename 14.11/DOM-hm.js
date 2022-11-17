@@ -46,4 +46,41 @@
     }
   });
   todo.appendChild(list);
+
+  // Starwars pics
+
+  const peopleArr = [
+    "Luke Skywalker",
+    "C-3PO",
+    "Darth Vader",
+    "Leia Organa",
+    "Owen Lars",
+    "Beru Whitesun lars",
+    "R5-D4",
+    "Biggs Darklighter",
+    "Obi-Wan Kenobi",
+  ];
+
+  const picDiv = document.querySelector("#pic");
+
+  const listDiv = document.querySelector("#list");
+
+  const pic = document.createElement("img");
+
+  const ulNames = document.createElement("ul");
+  let index = 0;
+  peopleArr.forEach((name) => {
+    const liName = document.createElement("li");
+    index++;
+    liName.append(name);
+    ulNames.appendChild(liName);
+    liName.addEventListener("mousehover", ($event) => {
+      pic.src = `https://starwars-visualguide.com/assets/img/characters/${index}.jpg`;
+      picDiv.appendChild(pic);
+    });
+    liName.addEventListener("mouseout", ($event) => {
+      picDiv.removeChild(picDiv.firstChild);
+    });
+  });
+  listDiv.appendChild(ulNames);
 })(window, document);
