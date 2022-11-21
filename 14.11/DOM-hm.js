@@ -12,38 +12,39 @@
 
   ToDobtn.addEventListener("click", ($event) => {
     console.log(todoInput.value);
-    if (todoInput.value != "") {
-      const task = document.createElement("li");
-      const span = document.createElement("span");
+    if (!todoInput.value) return;
 
-      const btnUNDO = document.createElement("button");
-      btnUNDO.append("UNDO");
-      btnUNDO.hidden = "hidden";
+    const task = document.createElement("li");
+    const span = document.createElement("span");
 
-      const button = document.createElement("button");
-      button.append("❌");
+    const btnUNDO = document.createElement("button");
+    btnUNDO.append("UNDO");
+    btnUNDO.hidden = "hidden";
 
-      button.addEventListener("click", handleClickRemove);
-      span.addEventListener("click", ($event) => {
-        span.style.color = "red";
-        button.setAttribute("hidden", "hidden");
-        btnUNDO.removeAttribute("hidden");
-      });
+    const button = document.createElement("button");
+    button.append("❌");
 
-      btnUNDO.addEventListener("click", ($event) => {
-        btnUNDO.setAttribute("hidden", "hidden");
-        button.removeAttribute("hidden");
-        span.style.color = "black";
-      });
+    button.addEventListener("click", handleClickRemove);
+    span.addEventListener("click", ($event) => {
+      span.style.color = "red";
+      button.setAttribute("hidden", "hidden");
+      btnUNDO.removeAttribute("hidden");
+    });
 
-      span.append(todoInput.value);
-      span.appendChild(button);
-      span.appendChild(btnUNDO);
-      todoInput.value = "";
+    btnUNDO.addEventListener("click", ($event) => {
+      btnUNDO.setAttribute("hidden", "hidden");
+      button.removeAttribute("hidden");
+      $event.stopPropagation();
+      span.style.color = "black";
+    });
 
-      task.appendChild(span);
-      list.appendChild(task);
-    }
+    span.append(todoInput.value);
+    span.appendChild(button);
+    span.appendChild(btnUNDO);
+    todoInput.value = "";
+
+    task.appendChild(span);
+    list.appendChild(task);
   });
   todo.appendChild(list);
 
@@ -74,12 +75,12 @@
     index++;
     liName.append(name);
     ulNames.appendChild(liName);
-    liName.addEventListener("mousehover", ($event) => {
-      pic.src = `https://starwars-visualguide.com/assets/img/characters/${index}.jpg`;
+    liName.addEventListener("mouseover", ($event) => {
+      pic.src = `https://starwars-visualguide.com/assets/img/characters/${index}.jpg`; //need to change index to indexof()
       picDiv.appendChild(pic);
     });
     liName.addEventListener("mouseout", ($event) => {
-      picDiv.removeChild(picDiv.firstChild);
+      picDiv.querySelector("img")?.remove();
     });
   });
   listDiv.appendChild(ulNames);
