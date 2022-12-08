@@ -41,5 +41,6 @@
         index--;
       }
     }
+    return tempArr;
   }
 })(window, document);
