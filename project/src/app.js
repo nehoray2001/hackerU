@@ -1,14 +1,25 @@
-import { ABOUT_PAGE_LINK, HOME_PAGE_LINK } from "./services/domService.js";
+import {
+  ABOUT_PAGE_LINK,
+  MY_APPOINMENT_PAGE_LINK,
+  SET_APPOINMENT_PAGE_LINK,
+  HOME_PAGE_LINK,
+  LOGIN_PAGE_LINK,
+} from "./services/domService.js";
 import PAGES from "./models/pageModel.js";
 import { onChangePage } from "./routes/router.js";
 
-
 //#region האזנה לאירועים
-HOME_PAGE_LINK.addEventListener('click', () => onChangePage(PAGES.HOME));
-ABOUT_PAGE_LINK.addEventListener('click', () => onChangePage(PAGES.ABOUT));
+HOME_PAGE_LINK.addEventListener("click", () => onChangePage(PAGES.HOME));
+ABOUT_PAGE_LINK.addEventListener("click", () => onChangePage(PAGES.ABOUT));
+MY_APPOINMENT_PAGE_LINK.addEventListener("click", () =>
+  onChangePage(PAGES.MYAPPOINMENT)
+);
+SET_APPOINMENT_PAGE_LINK.addEventListener("click", () =>
+  onChangePage([PAGES.SETAPPOINMENT])
+);
+LOGIN_PAGE_LINK.addEventListener("click", () => onChangePage(PAGES.LOGIN));
 
 //#endregion
-
 
 // class assignment:
 // 1. I want to be able to bounce between pages: 'home', 'about', 'add pic' and login.
@@ -18,4 +29,4 @@ ABOUT_PAGE_LINK.addEventListener('click', () => onChangePage(PAGES.ABOUT));
 // 5. add a nice title and subtitle to the pages
 // 6. add the the page model keys and values for there pages
 // 7. add the pages to the domService
-// 8. add event listeners for the links in the nav for these pages 
+// 8. add event listeners for the links in the nav for these pages
